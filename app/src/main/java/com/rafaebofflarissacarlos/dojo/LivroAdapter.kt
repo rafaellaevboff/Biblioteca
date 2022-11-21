@@ -1,0 +1,54 @@
+package com.rafaebofflarissacarlos.dojo
+
+import android.content.Intent
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+
+class LivroAdapter (private val livros: List<Livro>):
+    RecyclerView.Adapter<LivroAdapter.VH>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+        Log.v("LOG", "onCreate")
+        val v= LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
+        val vh = VH(v)
+        return vh
+
+        vh.itemView.setOnClickListener{
+            val livro= livros[vh.adapterPosition]
+            val itLivro = Intent(parent.context,UpdateActivity::class.java)
+            itLivro.putExtra("livro",livro)
+            parent.context.startActivity(itLivro)
+        }
+        return vh
+    }
+
+    override fun getItemCount(): Int {
+        return livros.size
+    }
+
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        var livro = livros[position]
+        holder.titulo.text =livro.titulo
+        holder.paginas.text=livro.paginas.toString()
+        holder.tipo.text=livro.tipo
+        holder.autor.text=livro.autor
+    }
+
+    class VH(view: View) : RecyclerView.ViewHolder(view) {
+        var titulo = view.findViewById<TextView>(R.id.txtProduto)
+        var paginas = view.findViewById<TextView>(R.id.paginas)
+        var tipo = view.findViewById<TextView>(R.id.genero)
+        var autor = view.findViewById<TextView>(R.id.autor)
+
+        init {
+            titulo = view.findViewById(R.id.txtProduto)
+            paginas = view.findViewById(R.id.paginas)
+            tipo= view.findViewById(R.id.genero)
+            autor= view.findViewById(R.id.autor)
+        }
+    }
+}
