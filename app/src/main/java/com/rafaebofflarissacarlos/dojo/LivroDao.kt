@@ -19,7 +19,6 @@ class LivroDao (context: Context) {
         contentValues.put(LIVRO_PAGLIDAS, livro.paginasLidas)
         contentValues.put(LIVRO_TIPO, livro.tipo)
         contentValues.put(LIVRO_AUTOR, livro.autor)
-//        contentValues.put(LIVRO_LIDO, livro.lido)
 
         var resp_id = db.insert(TABLE_LIVROS, null, contentValues)
         val msg = if(resp_id!=-1L){
@@ -40,7 +39,6 @@ class LivroDao (context: Context) {
         contentValues.put(LIVRO_PAGLIDAS, livro.paginasLidas)
         contentValues.put(LIVRO_TIPO, livro.tipo)
         contentValues.put(LIVRO_AUTOR, livro.autor)
-//        contentValues.put(LIVRO_LIDO, livro.lido)
 
         db.insertWithOnConflict(TABLE_LIVROS, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE)
         db.close()
@@ -86,7 +84,6 @@ class LivroDao (context: Context) {
         return livros
     }
 
-    @SuppressLint("Range")
     private fun livroFromCursor(cursor: Cursor): Livro{
         val id = cursor.getInt(cursor.getColumnIndex(LIVRO_ID))
         val titulo = cursor.getString(cursor.getColumnIndex(LIVRO_TITULO))

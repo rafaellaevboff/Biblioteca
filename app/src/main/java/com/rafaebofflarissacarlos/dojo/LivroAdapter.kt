@@ -15,11 +15,10 @@ class LivroAdapter (private val livros: List<Livro>):
         Log.v("LOG", "onCreate")
         val v= LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false)
         val vh = VH(v)
-        return vh
 
         vh.itemView.setOnClickListener{
             val livro= livros[vh.adapterPosition]
-            val itLivro = Intent(parent.context,UpdateActivity::class.java)
+            val itLivro = Intent(parent.context, UpdateActivity::class.java)
             itLivro.putExtra("livro",livro)
             parent.context.startActivity(itLivro)
         }
@@ -31,9 +30,11 @@ class LivroAdapter (private val livros: List<Livro>):
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
+        Log.v("LOG", "ViewHolder")
         var livro = livros[position]
         holder.titulo.text =livro.titulo
         holder.paginas.text=livro.paginas.toString()
+        holder.paginasLidas.text = livro.paginasLidas.toString()
         holder.tipo.text=livro.tipo
         holder.autor.text=livro.autor
     }
@@ -41,12 +42,14 @@ class LivroAdapter (private val livros: List<Livro>):
     class VH(view: View) : RecyclerView.ViewHolder(view) {
         var titulo = view.findViewById<TextView>(R.id.txtProduto)
         var paginas = view.findViewById<TextView>(R.id.paginas)
+        var paginasLidas = view.findViewById<TextView>(R.id.paginasLidas)
         var tipo = view.findViewById<TextView>(R.id.genero)
         var autor = view.findViewById<TextView>(R.id.autor)
 
         init {
             titulo = view.findViewById(R.id.txtProduto)
             paginas = view.findViewById(R.id.paginas)
+            paginasLidas = view.findViewById(R.id.paginasLidas)
             tipo= view.findViewById(R.id.genero)
             autor= view.findViewById(R.id.autor)
         }

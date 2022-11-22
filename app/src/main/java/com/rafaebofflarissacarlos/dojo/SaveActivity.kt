@@ -1,5 +1,6 @@
 package com.rafaebofflarissacarlos.dojo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -21,12 +22,10 @@ class SaveActivity : AppCompatActivity() {
         val back= findViewById<FloatingActionButton>(R.id.BBack)
         val save= findViewById<FloatingActionButton>(R.id.BSave)
 
-//        val livro = intent.getParcelableExtra<Livro>("livro")
-
         save.setOnClickListener{
             var livro = Livro(null, titulo.text.toString(),paginas.text.toString().toInt(), paginasLidas.text.toString().toInt(), tipo.text.toString(), autor.text.toString())
             var livroDao = LivroDao(this)
-            livroDao.update(livro)
+            livroDao.insert(livro)
             onBackPressed()
         }
 
