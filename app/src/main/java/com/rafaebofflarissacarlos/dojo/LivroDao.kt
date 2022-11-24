@@ -1,6 +1,5 @@
 package com.rafaebofflarissacarlos.dojo
 
-import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -30,6 +29,36 @@ class LivroDao (context: Context) {
         return msg
     }
 
+    fun buscaLivrosLidos(): List<Livro>{
+        val db = banco.writableDatabase
+        val sql = "SELECT * from " + TABLE_LIVROS + " WHERE PAGINAS = PAGINAS_LIDAS"
+        val cursor = db.rawQuery(sql, null)
+        val livros = ArrayList<Livro>()
+        while(cursor.moveToNext()){
+            val livro = livroFromCursor(cursor)
+            livros.add(livro)
+        }
+        cursor.close()
+        db.close()
+        Log.v("LOG", "Get ${livros.size}")
+        return livros
+    }
+
+    fun buscaLivrosNaoLidos(): List<Livro>{
+        val db = banco.writableDatabase
+        val sql = "SELECT * from " + TABLE_LIVROS + " WHERE NOT(PAGINAS = PAGINAS_LIDAS)"
+        val cursor = db.rawQuery(sql, null)
+        val livros = ArrayList<Livro>()
+        while(cursor.moveToNext()){
+            val livro = livroFromCursor(cursor)
+            livros.add(livro)
+        }
+        cursor.close()
+        db.close()
+        Log.v("LOG", "Get ${livros.size}")
+        return livros
+    }
+
     //atualizar linha - novos valores nos campos
     fun update (livro: Livro): Boolean{
         val db = banco.writableDatabase
@@ -40,7 +69,7 @@ class LivroDao (context: Context) {
         contentValues.put(LIVRO_TIPO, livro.tipo)
         contentValues.put(LIVRO_AUTOR, livro.autor)
 
-        db.insertWithOnConflict(TABLE_LIVROS, null, contentValues, SQLiteDatabase.CONFLICT_REPLACE)
+        db.updateWithOnConflict(TABLE_LIVROS, contentValues, "ID =?", arrayOf(livro.id.toString()), SQLiteDatabase.CONFLICT_REPLACE)
         db.close()
         return true
     }
@@ -68,22 +97,6 @@ class LivroDao (context: Context) {
         return livros
     }
 
-    fun getByName(name:String):ArrayList<Livro>{
-        Log.v("LOG", "GetByName")
-        val db = banco.writableDatabase
-        val sql = "SELECT * from " + TABLE_LIVROS + " where $LIVRO_TITULO like '%$name%'"
-        val cursor = db.rawQuery(sql, null)
-        val livros = ArrayList<Livro>()
-        while(cursor.moveToNext()){
-            val livro = livroFromCursor(cursor)
-            livros.add(livro)
-        }
-        cursor.close()
-        db.close()
-        Log.v("LOG", "Get ${livros.size}")
-        return livros
-    }
-
     private fun livroFromCursor(cursor: Cursor): Livro{
         val id = cursor.getInt(cursor.getColumnIndex(LIVRO_ID))
         val titulo = cursor.getString(cursor.getColumnIndex(LIVRO_TITULO))
@@ -93,6 +106,4 @@ class LivroDao (context: Context) {
         val autor = cursor.getString(cursor.getColumnIndex(LIVRO_AUTOR))
         return Livro(id,titulo,paginas,pagLidas, tipo, autor)
     }
-
-
 }

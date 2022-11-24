@@ -21,11 +21,28 @@ class MainActivity : AppCompatActivity() {
         initRecyclerView()
 
         var btnAdd = findViewById<Button>(R.id.buttonAdd)
+        var lidos = findViewById<Button>(R.id.lidos)
+        var naolidos = findViewById<Button>(R.id.naolidos)
 
         btnAdd.setOnClickListener {
             val itLivro = Intent(this, SaveActivity::class.java)
             startActivity(itLivro)
         }
+
+        lidos.setOnClickListener{
+            verificaListagem(true)
+        }
+
+        naolidos.setOnClickListener{
+            verificaListagem(false)
+        }
+
+    }
+
+    fun verificaListagem(value : Boolean){
+        val i = Intent(this, ListagemActivity::class.java)
+        i.putExtra("key", value)
+        startActivity(i)
     }
 
     override fun onResume() {

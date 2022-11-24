@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -37,6 +38,7 @@ class LivroAdapter (private val livros: List<Livro>):
         holder.paginasLidas.text = livro.paginasLidas.toString()
         holder.tipo.text=livro.tipo
         holder.autor.text=livro.autor
+        holder.lido.isChecked = livro.paginas == livro.paginasLidas
     }
 
     class VH(view: View) : RecyclerView.ViewHolder(view) {
@@ -45,6 +47,7 @@ class LivroAdapter (private val livros: List<Livro>):
         var paginasLidas = view.findViewById<TextView>(R.id.paginasLidas)
         var tipo = view.findViewById<TextView>(R.id.genero)
         var autor = view.findViewById<TextView>(R.id.autor)
+        var lido = view.findViewById<CheckBox>(R.id.lido)
 
         init {
             titulo = view.findViewById(R.id.txtProduto)
@@ -52,6 +55,7 @@ class LivroAdapter (private val livros: List<Livro>):
             paginasLidas = view.findViewById(R.id.paginasLidas)
             tipo= view.findViewById(R.id.genero)
             autor= view.findViewById(R.id.autor)
+            lido= view.findViewById(R.id.lido)
         }
     }
 }

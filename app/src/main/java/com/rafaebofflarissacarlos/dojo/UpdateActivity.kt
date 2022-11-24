@@ -1,6 +1,5 @@
 package com.rafaebofflarissacarlos.dojo
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity

@@ -25,6 +25,7 @@
 
         <activity android:name=".UpdateActivity" />
         <activity android:name=".SaveActivity"/>
+        <activity android:name=".ListagemActivity"/>
     </application>
 
 </manifest>
