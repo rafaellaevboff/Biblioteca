@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private var listaLivros = mutableListOf<Livro>()
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         updateAdapter()
         initRecyclerView()
 
-        var btnAdd = findViewById<Button>(R.id.buttonAdd)
+        var btnAdd = findViewById<FloatingActionButton>(R.id.btnAdd)
         var lidos = findViewById<Button>(R.id.lidos)
         var naolidos = findViewById<Button>(R.id.naolidos)
 
