@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -24,9 +25,13 @@ class SaveActivity : AppCompatActivity() {
 
         save.setOnClickListener{
             var livro = Livro(null, titulo.text.toString(),paginas.text.toString().toInt(), paginasLidas.text.toString().toInt(), tipo.text.toString(), autor.text.toString())
-            var livroDao = LivroDao(this)
-            livroDao.insert(livro)
-            onBackPressed()
+            if(livro.paginas < livro.paginasLidas){
+                Toast.makeText(applicationContext, "Total de páginas não pode ser maior que páginas lidas.", Toast.LENGTH_LONG).show()
+            }else{
+                var livroDao = LivroDao(this)
+                livroDao.insert(livro)
+                onBackPressed()
+            }
         }
 
         back.setOnClickListener {
