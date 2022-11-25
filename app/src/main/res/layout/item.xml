@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/txtProduto"
-        android:layout_width="104dp"
-        android:layout_height="49dp"
+        android:layout_width="106dp"
+        android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:text="@string/clean_code"
         android:textAlignment="textStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/lido"
@@ -27,7 +28,7 @@
         android:layout_marginTop="4dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#283593"
+        android:textColor="#9F000000"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtProduto"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +40,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="4dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#1565C0"
+        android:textColor="#CD5A6168"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/autor"
@@ -50,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/paginas2"
+        android:text="@string/paginas"
         app:layout_constraintStart_toStartOf="@+id/autor"
         app:layout_constraintTop_toBottomOf="@+id/autor" />
 
@@ -59,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="PAG LIDAS"
+        android:text="@string/lido"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
