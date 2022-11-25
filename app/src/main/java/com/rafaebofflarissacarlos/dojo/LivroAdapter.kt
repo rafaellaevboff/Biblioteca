@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class LivroAdapter (private val livros: List<Livro>):
     RecyclerView.Adapter<LivroAdapter.VH>() {
@@ -20,6 +21,13 @@ class LivroAdapter (private val livros: List<Livro>):
         vh.itemView.setOnClickListener{
             val livro= livros[vh.adapterPosition]
             val itLivro = Intent(parent.context, UpdateActivity::class.java)
+            itLivro.putExtra("livro",livro)
+            parent.context.startActivity(itLivro)
+        }
+
+        vh.editarPag.setOnClickListener{
+            val livro= livros[vh.adapterPosition]
+            val itLivro = Intent(parent.context, UpdateActivityPag::class.java)
             itLivro.putExtra("livro",livro)
             parent.context.startActivity(itLivro)
         }
@@ -48,6 +56,7 @@ class LivroAdapter (private val livros: List<Livro>):
         var tipo = view.findViewById<TextView>(R.id.genero)
         var autor = view.findViewById<TextView>(R.id.autor)
         var lido = view.findViewById<CheckBox>(R.id.lido)
+        var editarPag = view.findViewById<FloatingActionButton>(R.id.editarPagina)
 
         init {
             titulo = view.findViewById(R.id.txtProduto)
@@ -56,6 +65,7 @@ class LivroAdapter (private val livros: List<Livro>):
             tipo= view.findViewById(R.id.genero)
             autor= view.findViewById(R.id.autor)
             lido= view.findViewById(R.id.lido)
+            editarPag= view.findViewById(R.id.editarPagina)
         }
     }
 }
