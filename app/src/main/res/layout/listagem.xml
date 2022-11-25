@@ -18,11 +18,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDados"
-        android:layout_width="371dp"
-        android:layout_height="282dp"
+        android:layout_width="363dp"
+        android:layout_height="505dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/titulo" />

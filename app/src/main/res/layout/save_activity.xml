@@ -12,8 +12,11 @@
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="52dp"
         android:clickable="true"
+        android:tint="#FFFFFF"
+        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="#DADADA"
         app:srcCompat="@android:drawable/ic_menu_save" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -23,6 +26,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginBottom="4dp"
         android:clickable="true"
+        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="@+id/BSave"
         app:layout_constraintEnd_toStartOf="@+id/BSave"
         app:layout_constraintHorizontal_bias="0.0"
